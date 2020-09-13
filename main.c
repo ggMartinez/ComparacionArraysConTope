@@ -19,7 +19,7 @@ void cargarArrays(){
     int contador = 0;
 
     printf("Arreglo 1: (para terminar de cargar ingrese -1): \n");
-    while ((entrada != -1) || (contador = 10)){
+    while ((entrada != -1) || (contador > 10)){
         printf("Valor para Arreglo 1 Posicion %d: ",contador);
         scanf("%d",&entrada);
         if (entrada != -1){
@@ -33,7 +33,7 @@ void cargarArrays(){
     entrada = 0;
 
     printf("\n\nArreglo 2: (para terminar de cargar ingrese -1) \n");
-    while (entrada != -1){
+    while ((entrada != -1) || (contador > 10)){
         printf("Valor para Arreglo 2 Posicion %d: ",contador);
         scanf("%d",&entrada);
         if (entrada != -1){
@@ -185,10 +185,7 @@ void copiarDeUnArregloAOtro(){
 }
 
 
-
-
 int main(){
-    
     cargarArrays();
     mostrarArrays();
     compararArrays();
