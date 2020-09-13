@@ -3,12 +3,12 @@
 
 
 typedef struct arregloConTope {
-    int arreglo[100];
+    int arreglo[10];
     int tope;
 }arregloConTope;
 
 arregloConTope arreglo1,arreglo2;
-
+int MAXIMO;
 
 
 
@@ -19,7 +19,7 @@ void cargarArrays(){
     int contador = 0;
 
     printf("Arreglo 1: (para terminar de cargar ingrese -1): \n");
-    while (entrada != -1){
+    while ((entrada != -1) || (contador = 10)){
         printf("Valor para Arreglo 1 Posicion %d: ",contador);
         scanf("%d",&entrada);
         if (entrada != -1){
@@ -100,13 +100,13 @@ void verificarCantidadDeElementos(){
     
     switch(arregloConMasElementos){
         case 0: 
-            printf("Ambos arreglos tienen la misma cantidad de elementos (%d)\n",arreglo1.tope+1);
+            printf("Ambos arreglos tienen la misma cantidad de elementos (%d)\n",arreglo1.tope);
             break;
         case 1: 
-            printf("El primer arreglo tiene mas elementos (%d elementos)\n",arreglo1.tope+1);
+            printf("El primer arreglo tiene mas elementos (%d elementos)\n",arreglo1.tope);
             break;
         case 2:
-            printf("El segundo arreglo tiene mas elementos (%d elementos)\n",arreglo2.tope+1);
+            printf("El segundo arreglo tiene mas elementos (%d elementos)\n",arreglo2.tope);
             break;
 
     }
@@ -120,14 +120,14 @@ void verificarEspacioLibre(){
     int arregloConMasEspaciLibre = CompararEspacioLibre();
     
     switch(arregloConMasEspaciLibre){
-        case 0: 
-            printf("El primer arreglo tiene mas espacio libre (%d elementos disponibles)\n",100-arreglo1.tope);
-            break;
         case 1: 
-            printf("El segundo arreglo tiene mas espacio libre (%d elementos disponibles)\n",100-arreglo2.tope);
+            printf("El primer arreglo tiene mas espacio libre (%d elementos disponibles)\n",10-arreglo1.tope);
             break;
-        case 2:
-            printf("Ambos elementos tienen el mismo espacio libre (%d elementos disponibles)\n",100-arreglo1.tope);
+        case 2: 
+            printf("El segundo arreglo tiene mas espacio libre (%d elementos disponibles)\n",10-arreglo2.tope);
+            break;
+        case 0:
+            printf("Ambos elementos tienen el mismo espacio libre (%d elementos disponibles)\n",10-arreglo1.tope);
             break;
 
     }
@@ -140,28 +140,42 @@ void compararArrays(){
 }
 
 void copiarDeUnArregloAOtro(){
-        int arregloConMasElementos = CompararCantidadDeElementos();switch(arregloConMasElementos){
+        int arregloConMasElementos = CompararCantidadDeElementos();
+        int maximoRecorrido;
+        switch(arregloConMasElementos){
         case 0: 
             printf("No es necesario realizar ninguna operacion\n");
             break;
         case 1: 
-            
-            if(arreglo1.tope <= (100 - arreglo2.tope)){ // El arreglo 1 entra en el arreglo 
-            printf("TOY ACA");
-                for (int a = 0;a <= arreglo1.tope; a++ ){
+            if(arreglo1.tope < (9 - arreglo2.tope)){ // El arreglo 1 entra en el arreglo 
+                maximoRecorrido = arreglo1.tope;
+            }
+            else{ // El arreglo 1 no entra totalmente en el arreglo 2
+                maximoRecorrido = (9 - arreglo2.tope);
+            }
+
+            for (int a = 0;a < maximoRecorrido; a++ ){
                     arreglo2.tope ++;
                     arreglo2.arreglo[arreglo2.tope] = arreglo1.arreglo[a];
-                }
+                    mostrarArrays();
+
             }
             
             break;
+
         case 2:
-            if(arreglo2.tope <= (100 - arreglo1.tope)){ // El arreglo 1 entra en el arreglo 
-            printf("TOY ACA");
-                for (int a = 0;a <= arreglo2.tope; a++ ){
+            if(arreglo2.tope < (9 - arreglo1.tope)){  // El arreglo 2 entra totalmente en el arreglo 1
+                maximoRecorrido = arreglo1.tope;
+            }
+            else{ // El arreglo 2 no entra totalmente en el arreglo 1
+                maximoRecorrido = (9 - arreglo1.tope);
+            }
+
+            for (int a = 0;a < maximoRecorrido; a++ ){
                     arreglo1.tope ++;
                     arreglo1.arreglo[arreglo1.tope] = arreglo2.arreglo[a];
-                }
+                    mostrarArrays();
+
             }
             
             break;
@@ -174,6 +188,7 @@ void copiarDeUnArregloAOtro(){
 
 
 int main(){
+    
     cargarArrays();
     mostrarArrays();
     compararArrays();
