@@ -79,13 +79,13 @@ void contarCaracterEnCadena(){
     int contador = 0;
 
     printf("Ingrese una cadena: ");
-    //scanf("%s",entrada);
+    fflush(stdin);
+    scanf("%s",entrada);
     
     printf("Ingrese un caracter: ");
-    //scanf("%c",&caracter);
+    fflush(stdin);
+    scanf("%c",&caracter);
 
-    strcpy(entrada,"Joseso"); // SACALO A LA MIERDA DESPUES
-    caracter = 'o';
 
 
     while( continuar != 1){
@@ -109,14 +109,16 @@ void reemplazarCaracterEnCadena(){
     char caracterBusqueda,caracterReemplazo;
 
     printf("Ingrese una cadena: ");
-    //scanf("%s",entrada);
-    strcpy(entrada,"gran puta");
+    fflush(stdin);
+    scanf("%s",entrada);
+
     printf("Ingrese un caracter para buscar: ");
-    //scanf("%c",&caracterBusqueda);
-    caracterBusqueda = 'a';
+    fflush(stdin);
+    scanf("%c",&caracterBusqueda);
+
     printf("Ingrese un caracter a reemplazar: ");
-    //scanf("%c",&caracterReemplazo);
-    caracterReemplazo = 'e';
+    fflush(stdin);
+    scanf("%c",&caracterReemplazo);
 
 
     int continuar = 0;
@@ -153,7 +155,6 @@ void eliminarCaracterEnCadena(){
     strcpy(entrada,"gran puta");
     printf("Ingrese un caracter para eliminar: ");
     //scanf("%c",&caracterBusqueda);
-    caracterBusqueda = 'l';
 
 
     int continuar = 0;
@@ -198,7 +199,6 @@ void buscarCaracterEnCadena(){
     strcpy(entrada,"gran puta");
     printf("Ingrese un caracter para eliminar: ");
     //scanf("%c",&caracterBusqueda);
-    caracterBusqueda = 'g';
 
 
     int continuar = 0;
@@ -330,3 +330,4 @@ int main(){
     mostrarMenu();
     return 0;
 }
+
